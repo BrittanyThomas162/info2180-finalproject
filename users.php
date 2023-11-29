@@ -1,3 +1,90 @@
+<?php
+session_start();
+
+$host = 'localhost';
+$username = 'admin';
+$password = 'password123';
+$dbname = 'dolphin_crm';
+
+$link = mysqli_connect($host, $username, $password, $dbname);
+if ($link === false) {
+    die("ERROR: Could not connect. " . mysqli_connect_error());
+} else {
+    $sql_check = "SELECT * FROM users";
+    $result = mysqli_query($link, $sql_check);
+}
+
+if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['role'])) {
+    $passwordError = "";
+
+    function validate_input($input)
+    {
+        $input = trim($input);
+        $input = stripslashes($input);
+        $input = htmlspecialchars($input);
+        return $input;
+    }
+
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $role = $_POST['role'];
+
+    $link = mysqli_connect('localhost', 'admin', 'password123', 'dolphin_crm');
+    if ($link === false) {
+        die("ERROR: Could not connect. " . mysqli_connect_error());
+    }
+
+    $fname = validate_input($fname);
+    $lname = validate_input($lname);
+    $email = validate_input($email);
+    $role = validate_input($role);
+
+    $password = validate_input($password);
+    // Verify passwords
+    preg_match('/[0-9]+/', $password, $matches);
+    if (sizeof($matches) == 0) {
+        $passwordError = "The password must have at least one number <br>";
+        echo $passwordError;
+        exit;
+    }
+
+    preg_match('/[a-z]/', $password, $matches);
+    if (sizeof($matches) == 0) {
+        $passwordError = "The password must have at least one lowercase letter <br>";
+        echo $passwordError;
+        exit;
+    }
+
+    preg_match('/[A-Z]/', $password, $matches);
+    if (sizeof($matches) == 0) {
+        $passwordError = "The password must have at least one uppercase letter <br>";
+        echo $passwordError;
+        exit;
+    }
+
+    if (strlen($password) < 8) {
+        $passwordError = "The password must have at least eight characters <br>";
+        echo $passwordError;
+        exit;
+    }
+
+    // Hash the password
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    $sql = "INSERT INTO users (firstname, lastname, password, email, role) VALUES
+            ('$fname', '$lname', '$hashed_password', '$email', '$role')";
+
+    if (mysqli_query($link, $sql)) {
+        echo "Records added successfully.";
+    } else {
+        echo "ERROR: Was not able to execute $sql. " . mysqli_error($link);
+    }
+
+    mysqli_close($link);
+}
+?>
 
 <!DOCTYPE html>
 <html>
