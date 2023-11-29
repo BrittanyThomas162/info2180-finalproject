@@ -1,3 +1,53 @@
+<?php
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $fname = validate_input($_POST['fname']);
+    $lname = validate_input($_POST['lname']);
+    $email = validate_input($_POST['email']);
+    $role = validate_input($_POST['role']);
+    $password = validate_input($_POST['password']);
+
+    // Hash the password
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    // Your database connection code
+    $host = 'localhost';
+    $username = 'admin';
+    $password = 'password123';
+    $dbname = 'dolphin_crm';
+
+    $link = mysqli_connect($host, $username, $password, $dbname);
+    if ($link === false) {
+        die("ERROR: Could not connect. " . mysqli_connect_error());
+    }
+
+    $fname = validate_input($fname);
+    $lname = validate_input($lname);
+    $email = validate_input($email);
+    $role = validate_input($role);
+
+    // Validate the password here (if needed)
+
+    $sql = "INSERT INTO users (firstname, lastname, password, email, role) VALUES ('$fname', '$lname', '$hashed_password', '$email', '$role')";
+
+    if (mysqli_query($link, $sql)) {
+        echo "Records added successfully.";
+    } else {
+        echo "ERROR: Was not able to execute $sql. " . mysqli_error($link);
+    }
+
+    mysqli_close($link);
+}
+
+function validate_input($input) {
+    $input = trim($input);
+    $input = stripslashes($input);
+    $input = htmlspecialchars($input);
+    return $input;
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +72,6 @@
             <div class="records">
                 <h1>New User</h1>
                 <div class="record2">
-                    
                     <form method="post" action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>'>
                         <div class="table">
                             <div class="cell">
@@ -41,7 +90,7 @@
                             </div>
                             <div class="cell">
                                 <label>Password</label>
-                                <input type="text" name="password" id="password" required/>
+                                <input type="password" name="password" id="password" required/>
                             </div>
                         </div>
                         <div class="table">
