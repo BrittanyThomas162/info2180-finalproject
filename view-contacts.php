@@ -33,6 +33,7 @@ try {
       $stmt->execute();
   } else {
       $stmt = $conn->query("SELECT * FROM contacts");
+      $stmt->execute();
   }
   
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -59,7 +60,7 @@ try {
       <td> <?= $row['email'] ?> </td>
       <td> <?= $row['company'] ?> </td>
       <td> <?= $row['type'] ?> </td>
-      <td><a href="#">View</a></td>
+      <td><a href="contactDetails.html?contactID=<?= $row['id'] ?>">View</a></td>
     </tr>
     <?php endforeach; ?>
   </tbody>

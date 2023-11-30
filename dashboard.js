@@ -26,8 +26,6 @@ window.addEventListener('load', function() {
         if (event.target.tagName === 'A') {
             event.preventDefault();
             filterStatus = event.target.id;
-            console.log("Filter Status:", filterStatus);
-
             fetchAndUpdateTable();
         }
     });
