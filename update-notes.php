@@ -3,7 +3,7 @@
 session_start();  
 
 // Set the user ID in the session (for testing purposes)
-$_SESSION['user_id'] = '9';       //ENSURE this is stored when logging in
+$_SESSION['user_id'] = '1';       //ENSURE this is stored when logging in
 
 $host = 'localhost';
 $username = 'user123';

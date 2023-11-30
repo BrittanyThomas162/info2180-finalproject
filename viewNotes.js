@@ -21,7 +21,23 @@ window.addEventListener('load', function() {
     fetchAndUpdateNotes()
 
     addNotesForm.addEventListener('submit', function(event) {
-        fetchAndUpdateNotes();
+        event.preventDefault(); 
+        fetch("update-notes.php", {
+            method: 'POST',
+            body: new FormData(addNotesForm),
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.text();
+            } else {
+                return Promise.reject('Something went wrong');
+            }
+        })
+        .then(data => {
+            console.log(data); 
+            fetchAndUpdateNotes();
+        })
+        .catch(error => alert(error));
     });
 
 });
