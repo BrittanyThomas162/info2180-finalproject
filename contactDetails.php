@@ -15,11 +15,9 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Fetch contact details
-    $id = $_GET['id'];
-    // $stmt = $conn->prepare("SELECT * FROM contacts WHERE id = :id"); // replace with your actual SQL query
-    // $stmt->execute(['id' => $id]); // replace $id with the actual contact id
-    $stmt = $conn->prepare("
-    SELECT contacts.*, 
+    $id = $_GET['contactID'];
+    
+    $stmt = $conn->prepare("SELECT contacts.*, 
            CONCAT(users1.firstname, ' ', users1.lastname) AS assigned_to_name, 
            CONCAT(users2.firstname, ' ', users2.lastname) AS created_by_name 
     FROM contacts 
@@ -64,6 +62,7 @@ try {
         }
 
         </script>
+        <script src="viewNotes.js"></script>
     </head>
     <body>
         <div class="contact-details">
@@ -85,6 +84,7 @@ try {
                     <p>Notes</p>
                     <div id="display-notes">
                         <!-- notes will appear here -->
+                        
                     </div>
                     <div id="add-notes">
                         <!-- May need to pass contact ID in url to update-notes.php -->
