@@ -49,17 +49,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Login</title>
+    <?php require "header.php"; ?>
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
     <h2>Login</h2>
     <form action="login.php" method="post">
-        <label for="email">Email:</label>
-        <input type="email" name="email" required>
-
-        <label for="password">Password:</label>
-        <input type="password" name="password" required>
+        <input type="email" name="email" placeholder= "Email Address" required>
+        <input type="password" name="password" placeholder="Password" required>
 
         <button type="submit">Login</button>
     </form>
+    <p id="copyright">Copyright © 2022 Dolphin CRM</p>
 </body>
 </html>
