@@ -3,7 +3,7 @@ session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $servername = "localhost";
-    $username = "user123";
+    $username = "admin@project2.com";
     $password = "password123";
     $dbname = "dolphin_crm";
 
