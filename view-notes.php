@@ -26,7 +26,15 @@ try {
 <?php foreach ($results as $row): ?>
   <p><?= $row['firstname'] . ' ' . $row['lastname']; ?></p>
   <p><?= $row['comment']; ?></p>
-  <p><?= $row['created_at']; ?></p>
+
+  <?php 
+  $datetimeString = $row['created_at'];  
+  $dateTime = new DateTime($datetimeString);
+  $formattedDatetime = $dateTime->format("F j, Y \a\\t ga");
+  ?>
+
+  <p><?= $formattedDatetime; ?></p>
+
 <?php endforeach; ?>
 
 
