@@ -16,9 +16,19 @@ try {
 
     // Fetch contact details
     $id = $_GET['id'];
-    $stmt = $conn->prepare("SELECT * FROM contacts WHERE id = :id"); // replace with your actual SQL query
-    $stmt->execute(['id' => $id]); // replace $id with the actual contact id
+    // $stmt = $conn->prepare("SELECT * FROM contacts WHERE id = :id"); // replace with your actual SQL query
+    // $stmt->execute(['id' => $id]); // replace $id with the actual contact id
+    $stmt = $conn->prepare("
+    SELECT contacts.*, 
+           CONCAT(users1.firstname, ' ', users1.lastname) AS assigned_to_name, 
+           CONCAT(users2.firstname, ' ', users2.lastname) AS created_by_name 
+    FROM contacts 
+    INNER JOIN users AS users1 ON contacts.assigned_to = users1.id 
+    INNER JOIN users AS users2 ON contacts.created_by = users2.id 
+    WHERE contacts.id = :id
+    ");
 
+    $stmt->execute(['id' => $id]);
     $contact = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
@@ -28,18 +38,48 @@ try {
         <meta charset="UTF-8">
         <link rel="stylesheet" href="contactDetails.css">
         <title>Contact Details</title>
+        <script>
+        function assignToMe(contactId) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "assigntome.php", true);
+            xhr.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    alert("Contact assigned to you successfully.");
+                }
+            };
+            xhr.send("id=" + contactId);
+        }
+        
+        function switchRole(contactId, currentRole) {
+            var newRole = currentRole === 'Sales Lead' ? 'Support' : 'Sales Lead';
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "switchrole.php", true);
+            xhr.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    alert("Role switched successfully.");
+                    location.reload(); // Reload the page to update the displayed role
+                }
+            };
+            xhr.send("id=" + contactId + "&type=" + newRole);
+        }
+
+        </script>
     </head>
     <body>
         <div class="contact-details">
             <?php if ($contact): ?>
                 <div class="contact-name"><?php echo $contact['title'] . ' ' . $contact['firstname'] . ' ' . $contact['lastname']; ?></div>
-                <div class="contact-created_at">Created At: <?php echo $contact['created_at']; ?></div>
+                <div class="contact-created_at">Created At: <?php echo $contact['created_at']; ?> by <?php echo $contact['created_by_name']; ?></div>
                 <div class="contact-updated_at">Updated At: <?php echo $contact['updated_at']; ?></div>
+                <div class="buttons">
+                    <button type="button" id="assignToMeButton" onclick="assignToMe(<?php echo $contact['id']; ?>)">Assign to me</button>
+                    <button type="button" id="switchButton" onclick="switchRole(<?php echo $contact['id']; ?>, '<?php echo $contact['type']; ?>')">Switch</button>
+                </div>
                 <div class="container">
                     <div class="contact-email">Email: <?php echo $contact['email']; ?></div>
                     <div class="contact-company">Company: <?php echo $contact['company']; ?></div>
                     <div class="contact-telephone">Telephone: <?php echo $contact['telephone']; ?></div>
-                    <div class="contact-assigned_to">Assigned To: <?php echo $contact['assigned_to']; ?></div>
+                    <div class="contact-assigned_to">Assigned To: <?php echo $contact['assigned_to_name']; ?></div>
                 </div>
                 <div>
                     <p>Notes</p>
@@ -51,7 +91,7 @@ try {
 
                         <form id="add-notes-form" action="update-notes.php" method="post">
                             <div>
-                                <label for="notes">Add a note about ...</label>
+                                <label for="notes">Add a note about <?php echo $contact['firstname'] . ' ' . $contact['lastname']; ?></label> 
                             </div>
                             <div>
                                 <textarea name="notes" rows="5" cols="100" id="notes" placeholder="Enter details here" required></textarea>
@@ -74,3 +114,5 @@ try {
     echo "Connection failed: " . $e->getMessage();
 }
 ?>
+
+
