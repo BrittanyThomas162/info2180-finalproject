@@ -1,111 +1,109 @@
-<?php
-session_start();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $fname = validate_input($_POST['fname']);
-    $lname = validate_input($_POST['lname']);
-    $email = validate_input($_POST['email']);
-    $role = validate_input($_POST['role']);
-    $password = validate_input($_POST['password']);
-
-    // Hash the password
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-    // Your database connection code
-    $host = 'localhost';
-    $username = 'admin';
-    $password = 'password123';
-    $dbname = 'dolphin_crm';
-
-    $link = mysqli_connect($host, $username, $password, $dbname);
-    if ($link === false) {
-        die("ERROR: Could not connect. " . mysqli_connect_error());
-    }
-
-    $fname = validate_input($fname);
-    $lname = validate_input($lname);
-    $email = validate_input($email);
-    $role = validate_input($role);
-
-    // Validate the password here (if needed)
-
-    $sql = "INSERT INTO users (firstname, lastname, password, email, role) VALUES ('$fname', '$lname', '$hashed_password', '$email', '$role')";
-
-    if (mysqli_query($link, $sql)) {
-        echo "Records added successfully.";
-    } else {
-        echo "ERROR: Was not able to execute $sql. " . mysqli_error($link);
-    }
-
-    mysqli_close($link);
-}
-
-function validate_input($input) {
-    $input = trim($input);
-    $input = stripslashes($input);
-    $input = htmlspecialchars($input);
-    return $input;
-}
-?>
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dolphin CRM</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="dashboard.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dolphin CRM Dashboard</title>
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+    <script src="dashboard.js"></script>
 </head>
 <body>
     <div class="container">
-        <div class="back">
-            <div class="buttons">
-                <div><a href="dashboard.php"><i class="fa fa-home" aria-hidden="true"></i>Home</a></div>
-                <div><a href="newcontact.php"><i class="fa fa-user-circle-o" aria-hidden="true"></i>New Contact</a></div>
-                <div><a href="users.php"><i class="fa fa-users" aria-hidden="true"></i>Users</a></div>
-                <hr>
-                <div><a href="login.php"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a></div>
-            </div>
-        </div>    
-        <div class="background">
-            <div class="records">
-                <h1>New User</h1>
-                <div class="record2">
-                    <form method="post" action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>'>
-                        <div class="table">
-                            <div class="cell">
-                                <label for="fname">First Name</label>
-                                <input type="text" placeholder="Jane" name="fname" id="fname" required/>
+        <header>
+            <p>Dolphin CRM</p>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">New Contact</a></li>
+                <li><a href="#">Users</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+            <div class="background">
+                <div class="records">
+                    <h1>New User</h1>
+                    <div class="record2">
+                        <?php
+                            session_start();
+
+                            // If ($_SESSION['role'] != 'admin'){
+                            //     echo 'access denied';
+                            //     exit;
+                            //}
+
+                            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                $host = 'localhost';
+                                $username = 'admin';
+                                $password = 'password123';
+                                $dbname = 'dolphin_crm';
+
+                                $link = mysqli_connect($host, $username, $password, $dbname);
+                                if($link === false){
+                                    die("ERROR: Could not connect. " . mysqli_connect_error());
+                                }
+
+                                $fullname = validate_input($_POST['fullname']);
+                                $email = validate_input($_POST['email']);
+                                $role = validate_input($_POST['role']);
+                                $date = validate_input($_POST['date']);
+
+                                // Your additional validation and sanitation code here
+
+                                // Insert data into the database
+                                $sql = "INSERT INTO users (firstname, lastname, password, email, role, created_at) VALUES
+                                        ('$fname', '$lname', '$hashed_password', '$email', '$role', '$date')";
+
+                                if (mysqli_query($link, $sql)) {
+                                    echo "Records added successfully.";
+                                } else {
+                                    echo "ERROR: Was not able to execute $sql. " . mysqli_error($link);
+                                }
+
+                                mysqli_close($link);
+                            }
+
+                            function validate_input($input)
+                            {
+                                $input = trim($input);
+                                $input = stripslashes($input);
+                                $input = htmlspecialchars($input);
+                                return $input;
+                            }
+                        ?>
+
+                        <form method="post" action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>'>
+                            <table>
+                                <tr>
+                                    <td><label for="fullname">Full Name:</label></td>
+                                    <td colspan="3">
+                                        <input type="text" placeholder="John Doe" name="fullname" id="fullname" required/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="email">Email:</label></td>
+                                    <td colspan="3">
+                                        <input type="email" placeholder="something@example.com" name="email" id="email" required/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="role">Role:</label></td>
+                                    <td>
+                                        <select id="role" name="role">
+                                            <option value="Admin">Admin</option>
+                                            <option value="Member">Member</option>
+                                        </select>
+                                    </td>
+                                    <td><label for="date">Date:</label></td>
+                                    <td>
+                                        <input type="date" name="date" id="date" required/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="save-button">
+                                <button type="submit" id="save">Save</button>
                             </div>
-                            <div class="cell">
-                                <label for="lname">Last Name</label>
-                                <input type="text" placeholder="Doe" name="lname" id="lname" required/>
-                            </div>
-                        </div>
-                        <div class="table">
-                            <div class="cell">
-                                <label for="email">Email</label>
-                                <input type="email" placeholder="something@example.com" name="email" id="email" required/>
-                            </div>
-                            <div class="cell">
-                                <label>Password</label>
-                                <input type="password" name="password" id="password" required/>
-                            </div>
-                        </div>
-                        <div class="table">
-                            <div class="cell">
-                                <label for="role"> Role</label><br>
-                                <select id="role" name="role">
-                                    <option value="Admin">Admin</option>
-                                    <option value="Member">Member</option>
-                                </select>
-                            </div><br>
-                        </div>
-                        <div class="save-button">
-                            <button type="submit" id="save">Save</button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
