@@ -12,11 +12,11 @@ $dbname = 'dolphin_crm';
 
 try {
     $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
+    
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Fetch contact details
+    //Fetch contact details
     $id = $_GET['contactID'];
-    
     $stmt = $conn->prepare("SELECT contacts.*, 
            CONCAT(users1.firstname, ' ', users1.lastname) AS assigned_to_name, 
            CONCAT(users2.firstname, ' ', users2.lastname) AS created_by_name 
@@ -28,6 +28,9 @@ try {
 
     $stmt->execute(['id' => $id]);
     $contact = $stmt->fetch(PDO::FETCH_ASSOC);
+
+   
+
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +39,7 @@ try {
         <meta charset="UTF-8">
         <link rel="stylesheet" href="contactDetails.css">
         <title>Contact Details</title>
+        <?php require "header.php"; ?>
         <script>
         function assignToMe(contactId) {
             var xhr = new XMLHttpRequest();
@@ -43,22 +47,28 @@ try {
             xhr.onreadystatechange = function() {
                 if (this.readyState === 4 && this.status === 200) {
                     alert("Contact assigned to you successfully.");
+                    
                 }
             };
-            xhr.send("id=" + contactId);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.send("id=" + encodeURIComponent(contactId));
+            location.reload(); 
         }
         
         function switchRole(contactId, currentRole) {
-            var newRole = currentRole === 'Sales Lead' ? 'Support' : 'Sales Lead';
+            var newRole = (currentRole === 'Sales Lead') ? 'Support' : 'Sales Lead';
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "switchrole.php", true);
             xhr.onreadystatechange = function() {
                 if (this.readyState === 4 && this.status === 200) {
                     alert("Role switched successfully.");
-                    location.reload(); // Reload the page to update the displayed role
+
                 }
             };
-            xhr.send("id=" + contactId + "&type=" + newRole);
+
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.send("id=" + encodeURIComponent(contactId) + "&type=" + encodeURIComponent(newRole));
+            location.reload();
         }
 
         </script>
@@ -72,7 +82,15 @@ try {
                 <div class="contact-updated_at">Updated At: <?php echo $contact['updated_at']; ?></div>
                 <div class="buttons">
                     <button type="button" id="assignToMeButton" onclick="assignToMe(<?php echo $contact['id']; ?>)">Assign to me</button>
-                    <button type="button" id="switchButton" onclick="switchRole(<?php echo $contact['id']; ?>, '<?php echo $contact['type']; ?>')">Switch</button>
+                    <button type="button" id="switchButton" onclick="switchRole(<?php echo $contact['id']; ?>, '<?php echo $contact['type']; ?>')">
+                    Switch to <span id="newRole"></span>
+                    </button>
+                    <script>
+                        var newRole = document.getElementById("newRole");
+                        newRole.innerText = (<?php echo json_encode($contact['type']); ?> === 'Sales Lead') ? 'Support' : 'Sales Lead';
+                    </script>
+
+                    
                 </div>
                 <div class="container">
                     <div class="contact-email">Email: <?php echo $contact['email']; ?></div>
@@ -114,5 +132,4 @@ try {
     echo "Connection failed: " . $e->getMessage();
 }
 ?>
-
 
