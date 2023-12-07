@@ -10,7 +10,8 @@ try {
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   $contactID = isset($_GET['contactID']) ? $_GET['contactID'] : '';
-  $contactID = '1'; //JUST for testing, contact id should be passed in the url
+  //echo $contactID;
+  //$contactID = '1'; //JUST for testing, contact id should be passed in the url
 
   $stmt = $conn->prepare("SELECT users.firstname, users.lastname, notes.comment,notes.created_at FROM notes JOIN users ON notes.created_by=users.id WHERE notes.contact_id = :contactID");
   $stmt->bindParam(':contactID', $contactID, PDO::PARAM_INT);

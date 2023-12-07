@@ -21,7 +21,7 @@
       <main>
         <div class="container">
           <h1>Dashboard</h1>
-          <button>Add Contact</button>
+          <button type="button" id="newContactButton" onclick="window.location.href='newContactForm.php'">Add Contact</button>
         </div>
         <div class="Filter">
           <p>Filter By:</p>

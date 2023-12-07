@@ -15,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$comment = trim(filter_var($_POST['notes'],FILTER_SANITIZE_STRING));
     
     $contactID = isset($_GET['contactID']) ? $_GET['contactID'] : '';
-    $contactID = '1'; //JUST for testing, contact id should be passed in the url
     $created_by = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
     $created_at = date('Y-m-d H:i:s');
 

@@ -60,7 +60,7 @@ try {
       <td> <?= $row['email'] ?> </td>
       <td> <?= $row['company'] ?> </td>
       <td> <?= $row['type'] ?> </td>
-      <td><a href="contactDetails.html?contactID=<?= $row['id'] ?>">View</a></td>
+      <td><a href="contactDetails.php?contactID=<?= $row['id'] ?>">View</a></td>
     </tr>
     <?php endforeach; ?>
   </tbody>

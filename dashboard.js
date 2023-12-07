@@ -2,6 +2,14 @@ window.addEventListener('load', function() {
     let tableDiv = document.getElementById("contactsTable");
     let filterOptions = document.getElementById("filterOptions");
     let filterStatus = 'all';
+    //let addContactBtn = document.getElementById("add-contact");
+    console.log(document.getElementById("newContactButton"));
+    console.log("hello");
+    
+    document.getElementById("newContactButton").onclick = function () {
+        window.location.replace = "newContactForm.php";
+    };
+
 
     // Function to fetch and update the table
     function fetchAndUpdateTable() {
