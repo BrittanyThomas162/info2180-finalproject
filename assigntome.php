@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$_SESSION['user_id'] = '1';       
+$_SESSION['id'] = '1';       
 
 $host = 'localhost';
 $username = 'user123';
@@ -17,12 +17,12 @@ $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $contactId = $_POST['id'];
 
 // Get the ID of the logged-in user
-$userId = $_SESSION['user_id'];
+$userId = $_SESSION['id'];
 
 // Update the assigned_to field in the contacts table
-$stmt = $conn->prepare("UPDATE contacts SET assigned_to = :user_id WHERE id = id");
-$stmt = $conn->prepare("UPDATE contacts SET assigned_to = :user_id, updated_at = NOW() WHERE id = :contact_id");
-$stmt->execute(['user_id' => $userId, 'contact_id' => $contactId]);
-$stmt->execute(['user_id' => $userId, 'contact_id' => $contactId]);
+ $stmt = $conn->prepare("UPDATE contacts SET assigned_to = :id WHERE id = contact_id");
+ $stmt = $conn->prepare("UPDATE contacts SET assigned_to = :id, updated_at = NOW() WHERE id = :contact_id");
+
+$stmt->execute(['id' => $userId, 'contact_id' => $contactId]);
 
 ?>
