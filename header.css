@@ -1,0 +1,18 @@
+body 
+{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+.header_bar
+{
+    background-color:#1f2937;
+    padding: 10px;
+    margin-top: 0px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+}
