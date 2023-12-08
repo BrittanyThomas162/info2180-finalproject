@@ -3,8 +3,9 @@
 <head>
     <title>New Contact</title>
     <?php 
-    require "header.php"; 
+    include "header.php"; 
     ?>
+    <?php include 'menu.php'; ?>
     <style>
         body{
             
@@ -37,10 +38,6 @@
 
 </head>
 <body>
-
-    <div>
-        <?php include 'menu.php'; ?>
-    </div>
     <h1>New Contact</h1>
     <form action="newContact.php" method="POST" >
         <label for="title">Title:</label>
@@ -73,11 +70,32 @@
         </div>
         <label for="assigned">Assigned To:</label>
         <select id="assigned" name="assigned" required>
-            <option value="person1">Person 1</option>
-            <option value="person2">Person 2</option>
-            
+            <option value="">Select a person...</option>
+
+             <?php
+            // Fetch users from the database
+            $host = 'localhost';
+            $username = 'user123';
+            $password = 'password123';
+            $dbname = 'dolphin_crm';
+
+            // Database connection
+            $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $userQuery = "SELECT id, firstname, lastname FROM users";
+            $userResult = $conn->query($userQuery);
+
+            if ($userResult->rowCount() > 0) {
+                while ($user = $userResult->fetch(PDO::FETCH_ASSOC)) {
+                    $userId = $user['id'];
+                    $userName = $user['firstname'] . ' ' . $user['lastname'];
+                    echo "<option value=\"$userId\">$userName</option>";
+                }
+            }
+            ?>
         </select>
-        <br>
+          
         <input type="submit" value="Save">
     </form>
 </body>
