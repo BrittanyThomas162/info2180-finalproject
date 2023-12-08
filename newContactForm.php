@@ -7,8 +7,14 @@
     ?>
     <?php include 'menu.php'; ?>
     <style>
-        body{
-            
+        h1,form{
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border:1px solid #212529;
+            border-radius: 5px;
+            padding: 10px;
+            margin-left: 10%;
+            margin-right: 10%;
         }
 
         .form-row {
@@ -19,11 +25,14 @@
 
         label {
             margin-bottom: 0.5em;
+            color:#525156;
         }
 
         input, select {
             margin-bottom: 1em;
-
+            height: 32px;
+            width: 10%;
+            font-size: 14px;
         }
 
         #type{
@@ -32,6 +41,19 @@
 
         input{
             width: 70%;
+            font-size: 14px;
+        }
+        
+        input[type="submit"]{
+            width: 100px;
+            height: 32px;
+            background-color: #430ABF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight:bold;
+            display: block;
+            margin: auto;
         }
 
     </style> 
