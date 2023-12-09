@@ -1,0 +1,53 @@
+body 
+{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#menu {
+    width: 200px; 
+    height: 100%; 
+    /*border: 1px solid gray;*/
+    /*position: fixed; /* Fixed positioning to keep it in place when scrolling */
+    top: 60px; /* Align to the top */
+    left: 0; /* Align to the left */
+}
+
+nav {
+    padding-top: 20px; 
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    margin-left: 10px;
+    display: flex; 
+    align-items: center;
+}
+
+nav a {
+    display: flex;
+    text-decoration: none;
+    color: black;
+    padding: 10px 15px;
+    justify-content:center;
+    align-items: center;
+    gap: 10px;
+    /*font-weight: bold;*/
+}
+
+hr {
+    width: 85%; 
+    border-top: 1px solid #ddd;
+    margin: 10px; 
+}
+
+span.menu-icon ion-icon {
+    font-size: 20px; /* Adjust the icon size as needed */
+    padding-top: 5px;
+}
