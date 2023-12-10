@@ -1,91 +1,86 @@
-<?php session_start();
-	
+<?php
+session_start();
 
-	if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['role'])){
+// Check user role
+if ($_SESSION['role'] !== 'admin') {
+    echo 'Access denied';
+    exit;
+}
 
-        $passwordError= "";
+$passwordError = '';
 
-        /**
-         * It takes a string, removes leading and trailing whitespace, removes backslashes, and
-         * converts special characters to HTML entities.
-         * 
-         * @param input The input to be validated.
-         * 
-         * @return the value of the variable .
-         */
-        function validate_input($input){
-            $input = trim($input);
-            $input = stripslashes($input);
-            $input = htmlspecialchars($input);
-            return $input;
-        }
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $host = 'localhost';
+    $username = 'admin';
+    $password = 'password123';
+    $dbname = 'dolphin_crm';
 
-		$fname = $_POST['fname'];
-		$lname = $_POST['lname'];
-		$email = $_POST['email'];
-		$password = $_POST['password'];
-        $role = $_POST['role'];
-		
-		/* This is connecting to the database. */
-        $link = mysqli_connect('localhost', 'admin', 'password123', 'dolphin_crm');
-		if($link === false){
-			die("ERROR: Could not connect. " . mysqli_connect_error());
-		}
+    $link = mysqli_connect($host, $username, $password, $dbname);
+    if ($link === false) {
+        die("ERROR: Could not connect. " . mysqli_connect_error());
+    }
 
-        
-        $fname= validate_input($fname);
-        $lname= validate_input($lname);
-        $email= validate_input($email);
-        $role= validate_input($role);
+    $fname = validate_input($_POST['fname']);
+    $lname = validate_input($_POST['lname']);
+    $email = validate_input($_POST['email']);
+    $role = validate_input($_POST['role']);
+    $password = validate_input($_POST['password']);
 
-        $password= validate_input($password);
-        //Regex to Verify passwords
-        preg_match('/[0-9]+/', $password, $matches);
-        if (sizeof($matches)== 0){
-            $passwordError= "The password must have atleast one number <br>";
-            echo $passwordError;
-            exit;
-        }
+    // Password validation
+    if (!preg_match('/[0-9]/', $password)) {
+        $passwordError .= "The password must have at least one numeric digit\n";
+    }
 
-        preg_match('/[a-z]/', $password, $matches);
-        if (sizeof($matches)== 0){
-            $passwordError= "The password must have atleast one lowercase letter <br>";
-            echo $passwordError;
-            exit;
-        }
+    if (!preg_match('/[a-z]/', $password)) {
+        $passwordError .= "The password must have at least one lowercase letter\n";
+    }
 
-        preg_match('/[A-Z]/', $password, $matches);
-        if (sizeof($matches)== 0){
-            $passwordError= "The password must have atleast one Uppercase letter <br>";
-            echo $passwordError;
-            exit;
-        }
+    if (!preg_match('/[A-Z]/', $password)) {
+        $passwordError .= "The password must have at least one uppercase letter\n";
+    }
 
-        if (strlen($password) < 8){
-            $passwordError= "The password must have atleast eight characters <br>";
-            echo $passwordError;
-            exit;
-        } 
+    if (strlen($password) < 8) {
+        $passwordError .= "The password must have at least eight characters\n";
+    }
 
+    // Check if there were password errors
+    if (!empty($passwordError)) {
+        echo $passwordError;
+        exit;
+    }
 
-		//$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    // Hash the password
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-		$sql = "INSERT INTO users (firstname, lastname, password, email, role) VALUES
-            ('$fname', '$lname', '$password', '$email', '$role')";
+    // Use prepared statement to prevent SQL injection
+    $sql = "INSERT INTO users (firstname, lastname, password, email, role) VALUES (?, ?, ?, ?, ?)";
+    $stmt = mysqli_prepare($link, $sql);
 
+    // Bind parameters
+    mysqli_stmt_bind_param($stmt, 'sssss', $fname, $lname, $hashed_password, $email, $role);
 
+    // Execute the statement
+    if (mysqli_stmt_execute($stmt)) {
+        echo "Records added successfully.";
+    } else {
+        echo "ERROR: Was not able to execute $sql. " . mysqli_error($link);
+    }
 
-		/* This is checking to see if the query was successful. */
-        if(mysqli_query($link, $sql)){
-			echo "Records added successfully.";
-		} else{
-			echo "ERROR: Was not able to execute $sql. " . mysqli_error($link);
-		}
-	
-	mysqli_close($link);
-	}
+    // Close the statement
+    mysqli_stmt_close($stmt);
+    mysqli_close($link);
+}
 
+function validate_input($input)
+{
+    $input = trim($input);
+    $input = stripslashes($input);
+    $input = htmlspecialchars($input);
+    return $input;
+}
 ?>
+
+
 
 <html>
 	<head>
