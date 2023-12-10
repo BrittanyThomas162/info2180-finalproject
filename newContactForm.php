@@ -51,8 +51,8 @@
 
         input, select {
             margin-bottom: 1em;
-            height: 32px;
-            width: 10%;
+            height: 38px;
+            width: 12%;
             font-size: 14px;
         }
 
