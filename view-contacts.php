@@ -43,28 +43,43 @@ try {
 }
 ?>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Company</th>
-      <th>Type</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach ($results as $row): ?>
-    <tr>
-      <td><?= $row['title'] . ' ' . $row['firstname'] . ' ' . $row['lastname']; ?></td>
-      <td> <?= $row['email'] ?> </td>
-      <td> <?= $row['company'] ?> </td>
-      <td> <?= $row['type'] ?> </td>
-      <td><a href="contactDetails.php?contactID=<?= $row['id'] ?>">View</a></td>
-    </tr>
-    <?php endforeach; ?>
-  </tbody>
-</table>
+<html>
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Dolphin CRM- Users</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
 
+<body>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Company</th>
+        <th>Type</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach ($results as $row): ?>
+      <tr>
+        <td><?= $row['title'] . ' ' . $row['firstname'] . ' ' . $row['lastname']; ?></td>
+        <td> <?= $row['email'] ?> </td>
+        <td> <?= $row['company'] ?> </td>
+        <td> <?= $row['type'] ?> </td>
+        <td><a href="contactDetails.php?contactID=<?= $row['id'] ?>">View</a></td>
+      </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+
+</body>
+
+</html>
 

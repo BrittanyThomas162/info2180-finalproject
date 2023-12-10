@@ -1,0 +1,45 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-areas: "header header"
+                         "menu table";
+}
+
+#menu {
+    grid-area: menu;
+}
+
+main{
+    grid-area: table;
+    background-color:rgb(244, 241, 241); 
+    padding-left: 50px; 
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+    padding-right: 30px;
+    padding-bottom: 50px;
+}
+
+body {
+    margin: 0%;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    display: inline;
+    margin: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+#filter {
+    font-weight: bold;
+}
+
+.filter-section {
+    
+}

@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="menu.css" type="text/css" />
   </head>
 
@@ -28,7 +29,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="users.php">
               <span class="menu-icon">
                 <ion-icon name="people-outline"></ion-icon>              
               </span>
@@ -36,7 +37,7 @@
             >
           </li>
           <hr>
-          <li><a href="#"> 
+          <li><a href="logout.php"> 
             <span class="menu-icon">
               <ion-icon name="log-out-outline"></ion-icon>         
             </span>

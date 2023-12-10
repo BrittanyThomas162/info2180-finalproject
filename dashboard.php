@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Dolphin CRM Dashboard</title>
-    <link rel="stylesheet" href="dashboard.css" type="text/css" />
+    <link rel="stylesheet" href="styles_dash.css" />
     <script src="dashboard.js"></script>
   </head>
   <body>
@@ -28,7 +29,7 @@
             </span>
               <span class="menu-text">Add Contact</span>
           </div>
-          <div class="Filter">
+          <div class="filter-section">
             <p id="filter"> 
               <span class="menu-icon">
               <ion-icon name="funnel-outline"></ion-icon>          

@@ -1,0 +1,75 @@
+body{
+    background-color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    box-sizing: border-box;
+    
+}
+.contact-details{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border:1px solid #212529;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.contact-name{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.contact-created_at,.contact-updated_at {
+    font-size: 14px;
+    color: gray;
+}
+
+.container{
+    display:flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    border:1px solid #212529;
+    border-radius: 5px;
+}
+
+#switchButton{
+    background-color: rgb(248, 203, 0);
+    background-image: url('switch.png');
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+    border-radius: 5px;
+    color: black; 
+    width: 16%;
+    height: 32px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+}
+
+#assignToMeButton{
+    background-color: rgb(51, 158, 51);
+    background-image: url('hand-palm-silhouette-icon.png');
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+    border-radius: 5px;
+    color: black; 
+    width: 13%;
+    height: 32px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+}
+
+.contact-email, .contact-telephone {
+    width: 50%;
+}
+
+.contact-company, .contact-assigned_to {
+    width: 50%;
+}

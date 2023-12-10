@@ -39,6 +39,8 @@ try {
         <meta charset="UTF-8">
         <link rel="stylesheet" href="contactDetails.css">
         <title>Contact Details</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <?php require "header.php"; ?>
         <script>
         function assignToMe(contactId) {
