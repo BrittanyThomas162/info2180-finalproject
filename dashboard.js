@@ -31,18 +31,4 @@ window.addEventListener('load', function() {
     });
 
     
-    if (elem.textContent == "") {
-
-        if (isPlayerX) {
-            elem.textContent = "X";
-            elem.classList.add("X");
-            gameState[index]="X";
-            console.log(gameState)
-
-        } else {
-            elem.textContent = "O";
-            elem.classList.add("O");
-
-    }
-    
 });

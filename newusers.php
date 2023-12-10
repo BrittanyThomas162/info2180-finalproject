@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-// Check user role
-echo $_SESSION['role'];
-if ($_SESSION['role'] !== 'admin') {
+if (isset($_SESSION['role']) && $_SESSION['role'] !== 'admin') {
     echo 'Access denied';
     exit;
 }
+
+$passwordError = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $host = 'localhost';
@@ -24,14 +24,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = validate_input($_POST['email']);
     $role = validate_input($_POST['role']);
     $password = validate_input($_POST['password']);
-    $date = date('Y-m-d H:i:s'); // Use current date and time for created_at
+    $date = date('Y-m-d H:i:s');
 
-    // Additional validation and sanitation code here
-
-    // Hash the password (replace 'your_hashing_algorithm' with an appropriate one)
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    // Insert data into the database
     $sql = "INSERT INTO users (firstname, lastname, email, role, password, created_at) VALUES
             ('$firstname', '$lastname', '$email', '$role', '$hashed_password', '$date')";
 
@@ -52,6 +48,7 @@ function validate_input($input)
     return $input;
 }
 ?>
+
 <html>
 
 <head>
@@ -102,10 +99,10 @@ function validate_input($input)
                         </div>
                         <div class="table">
                             <div class="cell">
-                                <label for="role"> Role</label><br>
+                                <label for="role">Role</label><br>
                                 <select id="role" name="role">
                                     <option value="Admin">Admin</option>
-                                    <option value="Member">Member</option>
+                                    <option value="User">User</option>
                                 </select>
                             </div><br>
                         </div>
@@ -113,6 +110,7 @@ function validate_input($input)
                             <button type="submit" id="save">Save</button>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>

@@ -36,7 +36,7 @@
               <span class="menu-text">User</span></a
             >
           </li>
-          <hr>
+          <hr />
           <li><a href="logout.php"> 
             <span class="menu-icon">
               <ion-icon name="log-out-outline"></ion-icon>         
@@ -54,5 +54,6 @@
       nomodule
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
+
   </body>
 </html>
