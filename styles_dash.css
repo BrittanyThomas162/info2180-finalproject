@@ -1,21 +1,27 @@
 .container {
     display: grid;
     grid-template-columns: 1fr 5fr;
-    grid-template-areas: "header header"
-                         "menu table";
+    grid-template-rows: 100%;
 }
 
 #menu {
-    grid-area: menu;
+    grid-column: 1;
+    grid-row: 1;
 }
 
 main{
-    grid-area: table;
+    grid-column: 2;
+    grid-row: 1;
     background-color:rgb(244, 241, 241); 
     padding-left: 50px; 
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
     padding-right: 30px;
     padding-bottom: 50px;
+}
+
+h1 {
+    font-size: 34px; 
+    font-weight: bold; 
 }
 
 body {
@@ -36,10 +42,77 @@ a {
     color: black;
 }
 
+.dashboard-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 #filter {
     font-weight: bold;
 }
 
 .filter-section {
-    
+    display: flex;
+    align-items: center;
 }
+
+p {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    gap:5px;
+    padding-top: 10px;
+}
+
+.filter-icon{
+    font-size: 20px; 
+    padding-bottom: 5px;
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table, td, th {
+    border: 1px solid rgb(244, 241, 241);
+    text-align: left;
+    padding: 10px;
+}
+
+th {
+    background-color: rgb(244, 241, 241);
+}
+
+table {
+    padding: 10px;
+    padding-top: 0;
+}
+
+td th {
+    border: none;
+}
+
+td:first-child {
+    font-weight: bold;
+}
+
+td a {
+    color: rgb(72, 17, 154);
+}
+
+.table-display {
+    background-color: white;
+    padding: 15px 40px 40px 40px;
+}
+
+button {
+    border: none;
+    color: white;
+    border-radius: 5px;
+    background-color: rgb(72, 17, 154);
+    padding: 12px;
+}
+

@@ -10,7 +10,7 @@ body
     height: 100%; 
     /*border: 1px solid gray;*/
     /*position: fixed; /* Fixed positioning to keep it in place when scrolling */
-    top: 60px; /* Align to the top */
+    top: 15px; /* Align to the top */
     left: 0; /* Align to the left */
 }
 
@@ -34,7 +34,7 @@ nav a {
     display: flex;
     text-decoration: none;
     color: black;
-    padding: 10px 15px;
+    padding: 5px 15px;
     justify-content:center;
     align-items: center;
     gap: 10px;
@@ -47,7 +47,9 @@ hr {
     margin: 10px; 
 }
 
+#filter .menu-icon
 span.menu-icon ion-icon {
     font-size: 20px; /* Adjust the icon size as needed */
     padding-top: 5px;
 }
+

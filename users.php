@@ -36,9 +36,8 @@ if ($link === false) {
     <div class="container">
         <div class="back">
             <div class="buttons">
-
                 <div><a href="dashboard.php"><i class="fa fa-home" aria-hidden="true"></i>Home</a></div>
-                <div><a href="newcontact.php"><i class="fa fa-user-circle-o" aria-hidden="true"></i>New Contact</a></div>
+                <div><a href="newContactForm.php"><i class="fa fa-user-circle-o" aria-hidden="true"></i>New Contact</a></div>
                 <div><a href="users.php"><i class="fa fa-users" aria-hidden="true"></i>Users</a></div>
                 <hr>
                 <div><a href="logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a></div> 
@@ -48,7 +47,7 @@ if ($link === false) {
             <div class="records">
                 <div class="top-button">
                     <h1>Users</h1>
-                    <div><a href="newuser.php"><i class="fa fa-plus" aria-hidden="true"></i>Add User</a></div>
+                    <div><a href="newusers.php"><i class="fa fa-plus" aria-hidden="true"></i>Add User</a></div>
                 </div>
                 <div class="record2">
                     <div class="tables">

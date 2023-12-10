@@ -2,6 +2,7 @@
 session_start();
 
 // Check user role
+echo $_SESSION['role'];
 if ($_SESSION['role'] !== 'admin') {
     echo 'Access denied';
     exit;
@@ -68,10 +69,10 @@ function validate_input($input)
         <div class="back">
             <div class="buttons">
                 <div><a href="dashboard.php"><i class="fa fa-home" aria-hidden="true"></i>Home</a></div>
-                <div><a href="newcontact.php"><i class="fa fa-user-circle-o" aria-hidden="true"></i>New Contact</a></div>
+                <div><a href="newContactForm.php"><i class="fa fa-user-circle-o" aria-hidden="true"></i>New Contact</a></div>
                 <div><a href="users.php"><i class="fa fa-users" aria-hidden="true"></i>Users</a></div>
                 <hr>
-                <div><a href="login.php"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a></div>
+                <div><a href="logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a></div> 
             </div>
         </div>
         <div class="background">

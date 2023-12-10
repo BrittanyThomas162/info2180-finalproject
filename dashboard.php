@@ -23,29 +23,32 @@
         <main>
           <div class="dashboard-content">
             <h1>Dashboard</h1>
-            <button type="button" id="newContactButton" onclick="window.location.href='newContactForm.php'"> 
-            <span class="button-icon">
-            <ion-icon name="add-outline"></ion-icon>              
-            </span>
+            <button type="button" id="newContactButton" onclick='window.location.href="newContactForm.php"'> 
+              <span class="button-icon">
+              <ion-icon name="add-outline"></ion-icon>              
+              </span>
               <span class="menu-text">Add Contact</span>
           </div>
-          <div class="filter-section">
-            <p id="filter"> 
-              <span class="menu-icon">
-              <ion-icon name="funnel-outline"></ion-icon>          
-              </span>
-              <span class="menu-text">Filter By</span>
-            </p>
-            <ul id="filterOptions">
-              <li><a href="#" id="all">All</a></li>
-              <li><a href="#" id="salesLead">Sales Leads</a></li>
-              <li><a href="#" id="support">Support</a></li>
-              <li><a href="#" id="assigned">Assigned to me</a></li>
-            </ul>
+          <div class="table-display"> 
+            <div class="filter-section">
+              <p id="filter"> 
+                <span class="filter-icon">
+                <ion-icon name="funnel-outline"></ion-icon>          
+                </span>
+                <span class="menu-text">Filter By</span>
+              </p>
+              <ul id="filterOptions">
+                <li><a href="#" id="all">All</a></li>
+                <li><a href="#" id="salesLead">Sales Leads</a></li>
+                <li><a href="#" id="support">Support</a></li>
+                <li><a href="#" id="assigned">Assigned to me</a></li>
+              </ul>
+            </div>
+            <div id="contactsTable">
+              <!-- contacts will appear here -->
+            </div>
           </div>
-          <div id="contactsTable">
-            <!-- contacts will appear here -->
-          </div>
+
         </main>
       
       </div>

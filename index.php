@@ -38,6 +38,7 @@ session_start();
                 session_start();
                 $_SESSION["user_id"] = $row["id"];
                 $_SESSION["user_email"] = $row["email"];
+                $_SESSION["role"] = $row["role"];
                 header("Location: dashboard.php");
                 die();
             }
