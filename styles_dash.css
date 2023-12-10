@@ -1,13 +1,19 @@
-.container {
+.container
+ {
     display: grid;
     grid-template-columns: 1fr 5fr;
-    grid-template-rows: 100%;
+    grid-template-areas: "header header"
+                         "buttons records";
 }
 
-#menu {
-    grid-column: 1;
-    grid-row: 1;
+.button {
+    grid-area: buttons;
 }
+
+.main-content {
+    grid-area: records;
+}
+
 
 main{
     grid-column: 2;
@@ -38,7 +44,7 @@ li {
 }
 
 a {
-    /*text-decoration: none;*/
+    text-decoration: none;
     color: black;
 }
 
@@ -111,8 +117,12 @@ td a {
 button {
     border: none;
     color: white;
+    font-weight: bold;
     border-radius: 5px;
     background-color: rgb(72, 17, 154);
     padding: 12px;
 }
 
+button:hover { 
+    background-color:rgb(48, 43, 146); 
+}
