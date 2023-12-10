@@ -8,6 +8,10 @@ body{
     box-sizing: border-box;
     
 }
+.main-container{
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+}
 .contact-details{
     margin-top: 20px;
     margin-bottom: 20px;
@@ -16,6 +20,29 @@ body{
     padding: 10px;
     margin-left: 10%;
     margin-right: 10%;
+    grid-column: 2;
+}
+label{
+    font-weight: bold;
+}
+
+.menu{
+    grid-column:1;
+}
+
+.note{
+    padding-bottom: 10px;
+}
+ #name{
+    font-weight: bold;
+ }
+
+#note{
+    font-style: italic;
+}
+
+#date{
+    font-size: 11px;
 }
 
 .contact-name{
@@ -29,47 +56,86 @@ body{
 }
 
 .container{
-    display:flex;
-    flex-wrap: wrap;
+    display:grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-column-gap: 200px;
+    grid-row-gap: 10px;
     margin-top: 20px;
     border:1px solid #212529;
     border-radius: 5px;
 }
+.container > * {
+    min-width: 0;
+    overflow: auto; /* or overflow: hidden; */
+    overflow-wrap: anywhere;
+}
 
 #switchButton{
     background-color: rgb(248, 203, 0);
-    background-image: url('switch.png');
-    background-repeat: no-repeat;
-    background-position: left;
-    background-size: contain;
     border-radius: 5px;
     color: black; 
-    width: 16%;
-    height: 32px;
+    width: 14%;
+    height: 30px;
     font-size: 14px;
     font-weight: bold;
     border: none;
+}
+#switchButton img {
+    width: 18px;
+    height: 18px;
 }
 
 #assignToMeButton{
     background-color: rgb(51, 158, 51);
-    background-image: url('hand-palm-silhouette-icon.png');
-    background-repeat: no-repeat;
-    background-position: left;
-    background-size: contain;
     border-radius: 5px;
     color: black; 
-    width: 13%;
-    height: 32px;
+    width: 10%;
+    height: 30px;
     font-size: 14px;
     font-weight: bold;
     border: none;
 }
-
-.contact-email, .contact-telephone {
-    width: 50%;
+#assignToMeButton img {
+    width: 18px;
+    height: 18px;
 }
 
-.contact-company, .contact-assigned_to {
-    width: 50%;
+.contact-email {
+    grid-column: 1;
+    grid-row: 1;
+
+}
+.contact-telephone{
+    grid-column: 1;
+    grid-row: 2;
+    
+}
+
+
+.contact-company {
+    grid-column: 2;
+    grid-row: 1;
+   
+}
+
+.contact-assigned_to {
+    grid-column: 2;
+    grid-row: 2;
+
+}
+
+#submitBtn {
+    background-color: rgb(109, 4, 109);
+    width: 10%;
+    color: white; /* This sets the text color to white, adjust as needed */
+    border: none;
+    padding: 10px; /* Adjust as needed */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px; /* Adjust as needed */
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
 }
