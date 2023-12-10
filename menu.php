@@ -1,59 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="menu.css" type="text/css" />
-  </head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
 
-  <body>
-
-    <div id="menu">
-      <nav>
-        <ul>
-          <li>
-            <a href="dashboard.php">
-              <span class="menu-icon">
-                <ion-icon name="home-outline"></ion-icon>
-              </span>
-              <span class="menu-text">Home</span>
-            </a>
-          </li>
-          <li>
-            <a href="newContactForm.php">
-              <span class="menu-icon">
-                <ion-icon name="person-circle-outline"></ion-icon>
-              </span>
-              <span class="menu-text">New Contact</span>
-            </a>
-          </li>
-          <li>
-            <a href="users.php">
-              <span class="menu-icon">
-                <ion-icon name="people-outline"></ion-icon>              
-              </span>
-              <span class="menu-text">User</span></a
-            >
-          </li>
-          <hr />
-          <li><a href="logout.php"> 
-            <span class="menu-icon">
-              <ion-icon name="log-out-outline"></ion-icon>         
-            </span>
-          <span class="menu-text">Logout</span></a</a></li>
-        </ul>
-      </nav>
-    </div>
-
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-    ></script>
-
-  </body>
+<body>
+    <div class="container">
+        <div class="back">
+            <div class="buttons">
+                <div><a href="dashboard.php"><i class="fa fa-home" aria-hidden="true"></i>Home</a></div>
+                <div><a href="newContactForm.php"><i class="fa fa-user-circle-o" aria-hidden="true"></i>New Contact</a></div>
+                <div><a href="users.php"><i class="fa fa-users" aria-hidden="true"></i>Users</a></div>
+                <hr />
+                <div><a href="logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a></div> 
+            </div>
+        </div>
+    </body>
 </html>
