@@ -39,9 +39,6 @@ try {
         <meta charset="UTF-8">
         <link rel="stylesheet" href="contactDetails.css">
         <title>Contact Details</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <?php require "header.php"; ?>
         <script>
         function assignToMe(contactId) {
             var xhr = new XMLHttpRequest();
@@ -76,18 +73,26 @@ try {
         </script>
         <script src="viewNotes.js"></script>
     </head>
+    <header>
+        <?php require "header.php"; ?> 
+    </header>
+    
     <body>
-        <div>
-            <?php include 'menu.php'; ?>
-        </div>
+        <div class="main-container">
+            <div class="menu">
+                <?php require "menu.php"; ?>
+            </div>
         <div class="contact-details">
             <?php if ($contact): ?>
                 <div class="contact-name"><?php echo $contact['title'] . ' ' . $contact['firstname'] . ' ' . $contact['lastname']; ?></div>
                 <div class="contact-created_at">Created At: <?php echo $contact['created_at']; ?> by <?php echo $contact['created_by_name']; ?></div>
                 <div class="contact-updated_at">Updated At: <?php echo $contact['updated_at']; ?></div>
                 <div class="buttons">
-                    <button type="button" id="assignToMeButton" onclick="assignToMe(<?php echo $contact['id']; ?>)">Assign to me</button>
+                    <button type="button" id="assignToMeButton" onclick="assignToMe(<?php echo $contact['id']; ?>)">
+                    <img src="hand-palm-silhouette-icon.png" alt="Assign">
+                    Assign to me</button>
                     <button type="button" id="switchButton" onclick="switchRole(<?php echo $contact['id']; ?>, '<?php echo $contact['type']; ?>')">
+                    <img src="switch.png" alt="Switch">
                     Switch to <span id="newRole"></span>
                     </button>
                     <script>
@@ -104,7 +109,7 @@ try {
                     <div class="contact-assigned_to">Assigned To: <?php echo $contact['assigned_to_name']; ?></div>
                 </div>
                 <div>
-                    <p>Notes</p>
+                <h3>Notes</h3>
                     <div id="display-notes" data-id="<?= htmlspecialchars($id) ?>" >
                         <!-- notes will appear here -->
                         
