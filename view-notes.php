@@ -23,18 +23,18 @@ try {
   exit;
 }
 ?>
-
 <?php foreach ($results as $row): ?>
-  <p><?= $row['firstname'] . ' ' . $row['lastname']; ?></p>
-  <p><?= $row['comment']; ?></p>
+  <div class="note">
+  <p id="name"><?= $row['firstname'] . ' ' . $row['lastname']; ?></p>
+  <p id="note"><?= $row['comment']; ?></p>
+    <?php 
+    $datetimeString = $row['created_at'];  
+    $dateTime = new DateTime($datetimeString);
+    $formattedDatetime = $dateTime->format("F j, Y \a\\t ga");
+    ?>
+    <p id="date"><?= $formattedDatetime; ?></p>
+  </div>
 
-  <?php 
-  $datetimeString = $row['created_at'];  
-  $dateTime = new DateTime($datetimeString);
-  $formattedDatetime = $dateTime->format("F j, Y \a\\t ga");
-  ?>
-
-  <p><?= $formattedDatetime; ?></p>
 
 <?php endforeach; ?>
 
