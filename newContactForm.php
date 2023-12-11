@@ -96,10 +96,10 @@
         <div class="form-row">
         <label for="title">Title</label>
         <select id="title" name="title">
-            <option value="mr">Mr.</option>
-            <option value="ms">Ms.</option>
-            <option value="mrs">Mrs.</option>
-            <option value="dr">Dr.</option>
+            <option value="Mr.">Mr.</option>
+            <option value="Ms.">Ms.</option>
+            <option value="Mrs.">Mrs.</option>
+            <option value="Dr.">Dr.</option>
         </select>
         </div>
         <div class="form-row">

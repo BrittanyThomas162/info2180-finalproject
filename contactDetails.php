@@ -107,10 +107,10 @@ try {
                     </div>
                 </div>
                 <div class="container">
-                    <div class="contact-email">Email: <?php echo $contact['email']; ?></div>
-                    <div class="contact-company">Company: <?php echo $contact['company']; ?></div>
-                    <div class="contact-telephone">Telephone: <?php echo $contact['telephone']; ?></div>
-                    <div class="contact-assigned_to">Assigned To: <?php echo $contact['assigned_to_name']; ?></div>
+                    <div class="contact-email"> <div> Email: </div> <div> <?php echo $contact['email']; ?> </div> </div>
+                    <div class="contact-company"><div> Company: </div> <div> <?php echo $contact['company']; ?> </div> </div>
+                    <div class="contact-telephone"> <div> Telephone:</div> <div> <?php echo $contact['telephone']; ?> </div> </div>
+                    <div class="contact-assigned_to"> <div> Assigned To: </div> <div> <?php echo $contact['assigned_to_name']; ?> </div> </div>
                 </div>
                 <div>
                 <h3>Notes</h3>

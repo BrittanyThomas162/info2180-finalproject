@@ -7,7 +7,7 @@ session_start();
 // }
 
 $host = 'localhost';
-$username = 'admin';
+$username = 'user123';
 $password = 'password123';
 $dbname = 'dolphin_crm';
 

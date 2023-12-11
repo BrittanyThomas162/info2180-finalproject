@@ -15,7 +15,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connection failed: " . $conn->connect_error);
     }    
 
-
     if($_SERVER['REQUEST_METHOD'] == "POST"){
         
         $title = trim(filter_var($_POST['title'],FILTER_SANITIZE_STRING));
@@ -40,12 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_stmt_bind_param($stmt, 'sssssssssss', $title, $firstname, $lastname, $email, $telephone, $company, $type, $assigned_to, $created_by, $created_at, $updated_at);
         mysqli_stmt_execute($stmt);
 
-        
-        if(mysqli_stmt_affected_rows($stmt) > 0){
-            echo "Contact created successfully.";
-        } else {
-            echo "Error creating contact: " . mysqli_error($conn);
-        }
     }
     mysqli_close($conn);
 }
