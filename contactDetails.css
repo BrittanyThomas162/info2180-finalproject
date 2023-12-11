@@ -75,11 +75,16 @@ label{
     background-color: rgb(248, 203, 0);
     border-radius: 5px;
     color: black; 
-    width: 14%;
+    width: 170px;
     height: 30px;
     font-size: 14px;
     font-weight: bold;
     border: none;
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    padding-top: 5px;
+    gap:5px;
 }
 #switchButton img {
     width: 18px;
@@ -90,11 +95,16 @@ label{
     background-color: rgb(51, 158, 51);
     border-radius: 5px;
     color: black; 
-    width: 10%;
+    width: 130px;
     height: 30px;
     font-size: 14px;
     font-weight: bold;
     border: none;
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    padding-top: 5px;
+    gap:5px;
 }
 #assignToMeButton img {
     width: 18px;
@@ -138,4 +148,11 @@ label{
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 5px;
+}
+
+#assign-switch {
+    display:flex;
+    gap:10px;
+    align-content: center;
+    margin-top: 15px;
 }

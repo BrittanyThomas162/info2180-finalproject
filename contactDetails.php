@@ -87,7 +87,7 @@ try {
                 <div class="contact-name"><?php echo $contact['title'] . ' ' . $contact['firstname'] . ' ' . $contact['lastname']; ?></div>
                 <div class="contact-created_at">Created At: <?php echo $contact['created_at']; ?> by <?php echo $contact['created_by_name']; ?></div>
                 <div class="contact-updated_at">Updated At: <?php echo $contact['updated_at']; ?></div>
-                <div class="buttons">
+                <div class="buttons" id="assign-switch">
                     <button type="button" id="assignToMeButton" onclick="assignToMe(<?php echo $contact['id']; ?>)">
                     <img src="hand-palm-silhouette-icon.png" alt="Assign">
                     Assign to me</button>
@@ -141,4 +141,3 @@ try {
     echo "Connection failed: " . $e->getMessage();
 }
 ?>
-
