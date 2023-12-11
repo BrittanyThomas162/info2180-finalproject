@@ -84,23 +84,27 @@ try {
             </div>
         <div class="contact-details">
             <?php if ($contact): ?>
-                <div class="contact-name"><?php echo $contact['title'] . ' ' . $contact['firstname'] . ' ' . $contact['lastname']; ?></div>
-                <div class="contact-created_at">Created At: <?php echo $contact['created_at']; ?> by <?php echo $contact['created_by_name']; ?></div>
-                <div class="contact-updated_at">Updated At: <?php echo $contact['updated_at']; ?></div>
-                <div class="buttons" id="assign-switch">
-                    <button type="button" id="assignToMeButton" onclick="assignToMe(<?php echo $contact['id']; ?>)">
-                    <img src="hand-palm-silhouette-icon.png" alt="Assign">
-                    Assign to me</button>
-                    <button type="button" id="switchButton" onclick="switchRole(<?php echo $contact['id']; ?>, '<?php echo $contact['type']; ?>')">
-                    <img src="switch.png" alt="Switch">
-                    Switch to <span id="newRole"></span>
-                    </button>
-                    <script>
-                        var newRole = document.getElementById("newRole");
-                        newRole.innerText = (<?php echo json_encode($contact['type']); ?> === 'Sales Lead') ? 'Support' : 'Sales Lead';
-                    </script>
+                <div id="name-and-btns">
+                    <div>
+                        <div class="contact-name"><?php echo $contact['title'] . ' ' . $contact['firstname'] . ' ' . $contact['lastname']; ?></div>
+                        <div class="contact-created_at">Created At: <?php echo $contact['created_at']; ?> by <?php echo $contact['created_by_name']; ?></div>
+                        <div class="contact-updated_at">Updated At: <?php echo $contact['updated_at']; ?></div>
+                    </div>
+                    <div class="buttons" id="assign-switch">
+                        <button type="button" id="assignToMeButton" onclick="assignToMe(<?php echo $contact['id']; ?>)">
+                        <img src="hand-palm-silhouette-icon.png" alt="Assign">
+                        Assign to me</button>
+                        <button type="button" id="switchButton" onclick="switchRole(<?php echo $contact['id']; ?>, '<?php echo $contact['type']; ?>')">
+                        <img src="switch.png" alt="Switch">
+                        Switch to <span id="newRole"></span>
+                        </button>
+                        <script>
+                            var newRole = document.getElementById("newRole");
+                            newRole.innerText = (<?php echo json_encode($contact['type']); ?> === 'Sales Lead') ? 'Support' : 'Sales Lead';
+                        </script>
 
-                    
+                        
+                    </div>
                 </div>
                 <div class="container">
                     <div class="contact-email">Email: <?php echo $contact['email']; ?></div>

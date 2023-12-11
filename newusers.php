@@ -10,7 +10,7 @@ $passwordError = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $host = 'localhost';
-    $username = 'admin';
+    $username = 'user123';
     $password = 'password123';
     $dbname = 'dolphin_crm';
 

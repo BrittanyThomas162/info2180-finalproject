@@ -156,3 +156,8 @@ label{
     align-content: center;
     margin-top: 15px;
 }
+
+#name-and-btns {
+    display:flex;
+    align-content: baseline;
+}
