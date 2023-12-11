@@ -74,6 +74,7 @@ input {
     padding: 10px;
 }
 
+
 select {
     width: fixed;
     border-radius: 2px;
@@ -208,4 +209,3 @@ h1 {
     font-size: 34px; 
     font-weight: bold; 
 }
-

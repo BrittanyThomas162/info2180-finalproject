@@ -30,6 +30,7 @@ label{
 
 .menu{
     grid-column:1;
+    border-right: 1px solid #212529;
 }
 
 .note{

@@ -87,14 +87,14 @@ function validate_input($input)
                                 <input type="text" placeholder="Doe" name="lname" id="lname" required />
                             </div>
                         </div>
-                        <div class="table">
+                        <div class="table" id = "password-field">
                             <div class="cell">
                                 <label for="email">Email</label>
                                 <input type="email" placeholder="something@example.com" name="email" id="email" required />
                             </div>
                             <div class="cell">
-                                <label>Password</label>
-                                <input type="password" name="password" id="password" required />
+                                <label>Password: (at least 1 num, 1 letter, 1 capital, min 8 chars)</label>
+                                <input type="password" name="password" id="password" pattern="(?=.\d)(?=.[a-z])(?=.*[A-Z]).{8,}"required />
                             </div>
                         </div>
                         <div class="table">
